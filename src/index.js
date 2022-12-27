@@ -4,7 +4,7 @@ import fetchQuery from './js/fetchQuery';
 
 const refs = {
   searchForm: document.querySelector('#search-form'),
-  inputField: document.querySelector('#search-form > input'),
+  inputField: document.querySelector('input[name=searchQuery]'),
   gallery: document.querySelector('.gallery'),
   // loadMoreBtn: document.querySelector('.load-more'),
 };
@@ -29,7 +29,7 @@ function onSearchForm(e) {
 // }
 
 function rendersMarkup(queryResurt) {
-  console.log(queryResurt.hits.length);
+  console.log(queryResurt.totalHits);
 
   if (queryResurt.hits.length === 0) {
     return wrongSearchQuery();
@@ -58,4 +58,5 @@ function wrongSearchQuery() {
     'Please try again'
   );
   refs.inputField.value = '';
+  refs.gallery.innerHTML = '';
 }

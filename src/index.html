@@ -8,6 +8,41 @@
     <script type="module" src="./index.js"></script>
   </head>
   <body>
+
+        <div class="gallery">
+
+        <div class="photo-card">
+
+            <div class="face face1">
+              <div class="info">
+                  <img src="https://cdn.pixabay.com/photo/2016/03/28/12/35/cat-1285634_150.png">
+                    <!-- <h3>Design</h3> -->
+                </div>
+            </div>
+
+            <div class="face face2">
+                <div class="info">
+                    <p class="info-item"><b>Likes</b>${result.likes}</p>
+                    <p class="info-item"><b>Views</b>${result.views}</p>
+                    <p class="info-item"><b>Comments</b>${result.comments}</p>
+                    <p class="info-item"><b>Downloads</b>${result.downloads}</p>
+                       <!-- <a href="#">Read More</a> -->
+                </div>
+            </div>
+        </div>
+
+<!-- ============================================================================================= -->
+<!-- <div class="photo-card">
+   <img src="${result.webformatURL}" alt="${result.tags}" loading="lazy" />
+     <div class="info">
+         <p class="info-item"><b>Likes</b>${result.likes}</p>
+         <p class="info-item"><b>Views</b>${result.views}</p>
+         <p class="info-item"><b>Comments</b>${result.comments}</p>
+         <p class="info-item"><b>Downloads</b>${result.downloads}</p>
+     </div>
+</div> -->
+<!-- ============================================================================================= -->
+
     <include src="./partials/searchForm.html"></include>
     <include src="./partials/gallery.html"></include>
     <!-- <include src="./partials/LoadMoreBtn.html"></include> -->
