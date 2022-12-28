@@ -28,6 +28,8 @@ function onSearchForm(e) {
 //   e.preventDefault();
 // }
 
+// <span class="material-symbols-outlined">downloading</span>
+
 function rendersMarkup(queryResurt) {
   console.log(queryResurt.totalHits);
 
@@ -46,10 +48,13 @@ function rendersMarkup(queryResurt) {
 
         <div class="photo-card__face photo-card__face--dwn">
           <div class="info">
-            <p class="info-item"><b>Likes_</b>${result.likes}</p>
-            <p class="info-item"><b>Views</b>${result.views}</p>
-            <p class="info-item"><b>Comments</b>${result.comments}</p>
-            <p class="info-item"><b>Downloads</b>${result.downloads}</p>
+            <p class="info-item"><b class="material-symbols-outlined">mode_heat</b>${result.likes}</p>
+            <p class="info-item"><b class="material-symbols-outlined">visibility</b>${result.views}</p>
+            <p class="info-item"><b class="material-symbols-outlined">comment</b>${result.comments}</p>
+            <p class="info-item"><b class="material-symbols-outlined">downloading</b>${result.downloads}</p>
+
+
+            
           </div>
         </div>
       </div>`;
