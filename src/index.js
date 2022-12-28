@@ -34,7 +34,7 @@ function rendersMarkup(queryResurt) {
       return `      <div class="photo-card">
         <div class="photo-card__face photo-card__face--up">
           <div class="info">
-            <img src="${result.webformatURL}" alt="${result.tags}" loading="lazy" />
+            <a href="${result.webformatURL}"><img src="${result.largeImageURL}" alt="${result.tags}" loading="lazy" /></a>
           </div>
         </div>
 
@@ -63,7 +63,7 @@ function wrongSearchQuery() {
   refs.gallery.innerHTML = '';
 }
 
-const lightbox = new SimpleLightbox('.gallery img', {
+const lightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
 });
