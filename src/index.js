@@ -1,6 +1,8 @@
 import Notiflix from 'notiflix';
 import axios from 'axios';
 import fetchQuery from './js/fetchQuery';
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const refs = {
   searchForm: document.querySelector('#search-form'),
@@ -60,3 +62,8 @@ function wrongSearchQuery() {
   refs.inputField.value = '';
   refs.gallery.innerHTML = '';
 }
+
+const lightbox = new SimpleLightbox('.gallery img', {
+  captionsData: 'alt',
+  captionDelay: 250,
+});
