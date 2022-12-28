@@ -68,14 +68,6 @@ body {
   max-height: 230px;
 }
 
-// .gallery .photo-card .face.photo-card__face--up .info h3 {
-//   margin: 10px 0 0;
-//   padding: 0;
-//   color: #fff;
-//   text-align: center;
-//   font-size: 1.5em;
-// }
-
 .photo-card__face--dwn {
   position: relative;
   background: #fff;
@@ -94,21 +86,6 @@ body {
 .gallery .photo-card:hover .photo-card__face.photo-card__face--dwn {
   transform: translateY(0);
 }
-
-// .gallery .photo-card .photo-card__face.photo-card__face--dwn .info p {
-//   margin: 0 20px 0 0;
-//   padding: 0;
-// }
-
-// .gallery .photo-card .face.photo-card__face--dwn .info a {
-//   margin: 15px 0 0;
-//   display: inline-block;
-//   text-decoration: none;
-//   font-weight: 900;
-//   color: #333;
-//   padding: 5px;
-//   border: 1px solid #333;
-// }
 
 .gallery .photo-card .photo-card__face.photo-card__face--dwn .info a:hover {
   background: #333;
