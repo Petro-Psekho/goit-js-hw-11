@@ -23,7 +23,7 @@ body {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  margin-bottom: 120px;
+  margin: 50px 0;
 }
 
 .photo-card {
@@ -43,16 +43,17 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 4px;
 
     overflow: hidden;
     z-index: 1;
-    transform: translateY(100px);
+    transform: translateY(15px);
   }
 }
 
 .photo-card:hover .photo-card__face.photo-card__face--up {
-  background: #ff0057;
-  // transform: translateY(0);
+  background: #333;
+  transform: translateY(0px);
 }
 
 .gallery .photo-card .photo-card__face.photo-card__face--up .info {
@@ -70,21 +71,22 @@ body {
 
 .photo-card__face--dwn {
   position: relative;
-  background: #fff;
+  background: #333;
   display: flex;
   justify-content: center;
   align-items: flex-end;
   padding: 6px;
 
-  height: 165px;
+  height: 135px;
 
   box-sizing: border-box;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
-  transform: translateY(-100px);
+  transform: translateY(-135px);
 }
 
 .gallery .photo-card:hover .photo-card__face.photo-card__face--dwn {
-  transform: translateY(0);
+  border-radius: 5px;
+  transform: translateY(-70);
 }
 
 .gallery .photo-card .photo-card__face.photo-card__face--dwn .info a:hover {
@@ -104,13 +106,14 @@ body {
   margin: 0;
   padding: 0;
 
-  font-family: roboto;
+  font-family: 'Roboto', sans-serif;
 
   font-size: 15px;
   font-weight: 300;
+  color: #c0bfbf;
 
   &:not(:last-child) {
-    margin-right: 20px;
+    margin-right: 35px;
   }
 }
 
@@ -119,5 +122,6 @@ body {
 
   margin-bottom: 5px;
   font-size: 30px;
-  color: #575656;
+  // color: #575656;
+  color: #c0bfbf;
 }
