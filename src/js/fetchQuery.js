@@ -11,7 +11,7 @@ export default async function fetchQuery(searchQuery) {
 
   try {
     const response = await fetch(
-      `${BASE_URL}?${API_KEY}&q=${searchQuery}&${imageType}&${orientation}&${safeSearch}&page=2&per_page=5 `,
+      `${BASE_URL}?${API_KEY}&q=${searchQuery}&${imageType}&${orientation}&${safeSearch}&page=1&per_page=10 `,
       options
     );
     return await response.json();
