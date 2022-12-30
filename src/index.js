@@ -8,9 +8,29 @@ const refs = {
   searchForm: document.querySelector('#search-form'),
   inputField: document.querySelector('input[name=searchQuery]'),
   gallery: document.querySelector('.gallery'),
+  guard: document.querySelector('.js-guard'),
 };
 
 refs.searchForm.addEventListener('submit', onSearchForm);
+
+let options = {
+  root: null,
+  rootMargin: '300px',
+  threshold: 1.0,
+};
+
+let observer = new IntersectionObserver(onInfinityScroll, options);
+
+function onInfinityScroll(entries, observer) {
+  let page = 1;
+  console.log(entries);
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      page += 1;
+      fetchQuery(page).then(rendersMarkup).catch(console.error());
+    }
+  });
+}
 
 function onSearchForm(e) {
   e.preventDefault();
@@ -22,14 +42,15 @@ function onSearchForm(e) {
   fetchQuery(searchQuery).then(rendersMarkup).catch(console.error());
 }
 
-function rendersMarkup(queryResurt) {
-  console.log(queryResurt.totalHits);
+function rendersMarkup(queryResult) {
+  console.log(queryResult.totalHits);
+  console.log(queryResult.hits);
 
-  if (queryResurt.hits.length === 0) {
+  if (queryResult.hits.length === 0) {
     return wrongSearchQuery();
   }
 
-  const markup = queryResurt.hits
+  const markup = queryResult.hits
     .map(result => {
       return `      <div class="photo-card">
         <div class="photo-card__face photo-card__face--up">
@@ -46,11 +67,13 @@ function rendersMarkup(queryResurt) {
             <p class="info-item"><b class="material-symbols-outlined">downloading</b>${result.downloads}</p>            
           </div>
           
-        </div>
-      </div>`;
+        </div>      
+        </div>`;
     })
     .join('');
   refs.gallery.innerHTML = markup;
+
+  observer.observe(refs.guard);
 }
 
 function wrongSearchQuery() {
