@@ -20,14 +20,18 @@ let options = {
 };
 
 let observer = new IntersectionObserver(onInfinityScroll, options);
+let nextPage = 1;
 
 function onInfinityScroll(entries, observer) {
-  let page = 1;
-  console.log(entries);
+  const lastSearchQuery = refs.inputField.value;
+
   entries.forEach(entry => {
+    nextPage += 1;
+
     if (entry.isIntersecting) {
-      page += 1;
-      fetchQuery(page).then(rendersMarkup).catch(console.error());
+      fetchQuery(lastSearchQuery, nextPage)
+        .then(rendersMarkup)
+        .catch(console.error());
     }
   });
 }
