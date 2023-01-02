@@ -1,6 +1,7 @@
 import Notiflix from 'notiflix';
 import axios from 'axios';
-import fetchQuery from './js/fetchQuery';
+// import fetchQuery from './js/fetchQuery';
+import { curentPage, perPage, fetchQuery } from './js/fetchQuery';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
@@ -20,18 +21,22 @@ let options = {
 };
 
 let observer = new IntersectionObserver(onInfinityScroll, options);
-let nextPage = 1;
 
-function onInfinityScroll(entries, observer) {
+async function onInfinityScroll(entries, observer) {
   const lastSearchQuery = refs.inputField.value;
+  let pageCount = perPage * curentPage;
 
-  entries.forEach(entry => {
-    nextPage += 1;
-
+  await entries.forEach(entry => {
     if (entry.isIntersecting) {
-      fetchQuery(lastSearchQuery, nextPage)
-        .then(rendersMarkup)
-        .catch(console.error());
+      fetchQuery(lastSearchQuery).then(rendersMarkup).catch(console.error());
+      console.log('pageCount', pageCount, queryResult.totalHits);
+
+      // if (pageCount > queryResult.totalHits) {
+      //   console.log('pageCount', pageCount);
+      //   observer.disconnect();
+      // }
+
+      // console.log('внутри', curentPage, fetchQuery);
     }
   });
 }
@@ -40,15 +45,18 @@ function onSearchForm(e) {
   e.preventDefault();
   const searchQuery = e.target.elements.searchQuery.value;
 
-  console.log(searchQuery);
-  console.log(fetchQuery(searchQuery));
+  // console.log(searchQuery);
+  // console.log(fetchQuery(searchQuery));
 
   fetchQuery(searchQuery).then(rendersMarkup).catch(console.error());
+
+  console.log('rendersMarkup.length', rendersMarkup.length);
 }
 
 function rendersMarkup(queryResult) {
-  console.log(queryResult.totalHits);
-  console.log(queryResult.hits);
+  console.log('queryResult.totalHits', queryResult.totalHits);
+  console.log('queryResult.hits.length', queryResult.hits.length);
+  console.log('queryResult', queryResult);
 
   if (queryResult.hits.length === 0) {
     return wrongSearchQuery();
@@ -75,7 +83,7 @@ function rendersMarkup(queryResult) {
         </div>`;
     })
     .join('');
-  refs.gallery.innerHTML = markup;
+  refs.gallery.insertAdjacentHTML('beforeend', markup);
 
   observer.observe(refs.guard);
 }
