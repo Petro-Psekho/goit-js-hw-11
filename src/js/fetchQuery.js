@@ -22,9 +22,9 @@ export async function fetchQuery(searchQuery) {
     const response = await fetch(
       `${BASE_URL}?${API_KEY}&q=${searchQuery}&${searchParams}`
     );
-    console.log(response);
+    // console.log(response);
     // console.log('до incrementPage', curentPage);
-    incrementPage();
+    // incrementPage();
     // console.log('после incrementPage', curentPage);
 
     return await response.json();
@@ -33,7 +33,7 @@ export async function fetchQuery(searchQuery) {
   }
 }
 
-function incrementPage() {
+export function incrementPage() {
   curentPage += 1;
 }
 

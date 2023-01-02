@@ -1,7 +1,12 @@
 import Notiflix from 'notiflix';
 import axios from 'axios';
 // import fetchQuery from './js/fetchQuery';
-import { curentPage, perPage, fetchQuery } from './js/fetchQuery';
+import {
+  curentPage,
+  perPage,
+  incrementPage,
+  fetchQuery,
+} from './js/fetchQuery';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
@@ -24,12 +29,11 @@ let observer = new IntersectionObserver(onInfinityScroll, options);
 
 async function onInfinityScroll(entries, observer) {
   const lastSearchQuery = refs.inputField.value;
-  let pageCount = perPage * curentPage;
 
   await entries.forEach(entry => {
     if (entry.isIntersecting) {
       fetchQuery(lastSearchQuery).then(rendersMarkup).catch(console.error());
-      console.log('pageCount', pageCount, queryResult.totalHits);
+      // console.log('pageCount', pageCount, queryResult.totalHits);
 
       // if (pageCount > queryResult.totalHits) {
       //   console.log('pageCount', pageCount);
@@ -37,29 +41,42 @@ async function onInfinityScroll(entries, observer) {
       // }
 
       // console.log('внутри', curentPage, fetchQuery);
+      incrementPage();
     }
   });
 }
 
 function onSearchForm(e) {
   e.preventDefault();
+  curentPage = 1;
+  refs.gallery.innerHTML = '';
+  console.log('onSearchForm__curentPage', curentPage);
   const searchQuery = e.target.elements.searchQuery.value;
 
   // console.log(searchQuery);
   // console.log(fetchQuery(searchQuery));
 
   fetchQuery(searchQuery).then(rendersMarkup).catch(console.error());
-
-  console.log('rendersMarkup.length', rendersMarkup.length);
 }
 
 function rendersMarkup(queryResult) {
   console.log('queryResult.totalHits', queryResult.totalHits);
-  console.log('queryResult.hits.length', queryResult.hits.length);
+  console.log('queryResult.hits.length', queryResult.hits);
   console.log('queryResult', queryResult);
+
+  let totalPagesCount = Math.ceil(queryResult.totalHits / perPage);
+  console.log('totalPagesCount', totalPagesCount);
+
+  console.log('perPage', perPage);
+  console.log('curentPage', curentPage);
 
   if (queryResult.hits.length === 0) {
     return wrongSearchQuery();
+  }
+
+  if (curentPage >= totalPagesCount) {
+    observer.unobserve(refs.guard);
+    return endOfSearchResults();
   }
 
   const markup = queryResult.hits
@@ -96,6 +113,12 @@ function wrongSearchQuery() {
   );
   refs.inputField.value = '';
   refs.gallery.innerHTML = '';
+}
+
+function endOfSearchResults() {
+  Notiflix.Notify.failure(
+    "We're sorry, but you've reached the end of search results."
+  );
 }
 
 const lightbox = new SimpleLightbox('.gallery a', {
