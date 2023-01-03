@@ -4,7 +4,7 @@ import axios from 'axios';
 import {
   curentPage,
   perPage,
-  incrementPage,
+  // incrementPage,
   fetchQuery,
 } from './js/fetchQuery';
 import SimpleLightbox from 'simplelightbox';
@@ -41,7 +41,7 @@ async function onInfinityScroll(entries, observer) {
       // }
 
       // console.log('внутри', curentPage, fetchQuery);
-      incrementPage();
+      // incrementPage();
     }
   });
 }
