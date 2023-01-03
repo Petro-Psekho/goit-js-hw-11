@@ -24,7 +24,10 @@ export async function fetchQuery(searchQuery) {
     const response = await axios.get(
       `${BASE_URL}?${API_KEY}&q=${searchQuery}&${searchParams}`
     );
-    // console.log(response);
+    console.log('response__axios__response', response);
+    console.log('response__axios__data', response.data);
+    console.log('response__axios__hits', response.data.hits);
+    console.log('response__axios__totalHits', response.data.totalHits);
     // console.log('до incrementPage', curentPage);
     incrementPage();
     // console.log('после incrementPage', curentPage);
