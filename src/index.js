@@ -56,6 +56,9 @@ function rendersMarkup(queryResult) {
   // console.log('queryResult.hits.length', queryResult.hits);
   console.log('queryResult', queryResult);
 
+  const totalHits = queryResult.totalHits;
+  numberOfImages(totalHits);
+
   let totalPagesCount = Math.ceil(queryResult.totalHits / perPage);
   console.log('totalPagesCount', totalPagesCount);
 
@@ -128,6 +131,20 @@ function endOfSearchResults() {
       useFontAwesome: true,
     }
   );
+}
+
+function numberOfImages(totalHits) {
+  Notiflix.Notify.success(`Hooray! We found ${totalHits} images`, {
+    width: '800px',
+
+    position: 'center-bottom',
+    timeout: 2000,
+    backOverlay: false,
+    clickToClose: true,
+    fontSize: '15px',
+    closeButton: false,
+    useFontAwesome: false,
+  });
 }
 
 const lightbox = new SimpleLightbox('.gallery a', {
