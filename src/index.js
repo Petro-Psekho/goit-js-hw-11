@@ -48,7 +48,7 @@ async function onInfinityScroll(entries, observer) {
 
 function onSearchForm(e) {
   e.preventDefault();
-  curentPage = 1;
+  // curentPage = 1;
   refs.gallery.innerHTML = '';
   console.log('onSearchForm__curentPage', curentPage);
   const searchQuery = e.target.elements.searchQuery.value;
