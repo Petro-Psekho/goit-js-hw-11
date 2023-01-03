@@ -14,12 +14,6 @@ export async function fetchQuery(searchQuery) {
     safesearch: true,
   });
 
-  // searchParams.forEach(element => {
-  //   console.log(element);
-  // });
-
-  // console.log(searchParams);
-
   try {
     const response = await axios.get(
       `${BASE_URL}?${API_KEY}&q=${searchQuery}&${searchParams}`
@@ -28,9 +22,8 @@ export async function fetchQuery(searchQuery) {
     console.log('response__axios__data', response.data);
     console.log('response__axios__hits', response.data.hits);
     console.log('response__axios__totalHits', response.data.totalHits);
-    // console.log('до incrementPage', curentPage);
+
     incrementPage();
-    // console.log('после incrementPage', curentPage);
 
     return response.data;
   } catch (error) {

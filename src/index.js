@@ -1,6 +1,4 @@
 import Notiflix from 'notiflix';
-
-// import fetchQuery from './js/fetchQuery';
 import { curentPage, perPage, fetchQuery, resetPage } from './js/fetchQuery';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
@@ -103,15 +101,32 @@ function wrongSearchQuery() {
   Notiflix.Report.failure(
     'Sorry',
     'There are no images matching your search query',
-    'Please try again'
+    'Please try again',
+    {
+      width: '500px',
+      svgSize: '80px',
+      titleFontSize: '20px',
+      messageFontSize: '21px',
+      buttonFontSize: '16px',
+    }
   );
   refs.inputField.value = '';
   refs.gallery.innerHTML = '';
 }
 
 function endOfSearchResults() {
-  Notiflix.Notify.failure(
-    "We're sorry, but you've reached the end of search results."
+  Notiflix.Notify.info(
+    "We're sorry, but you've reached the end of search results.",
+    {
+      width: '500px',
+      position: 'center-center',
+      timeout: 3000,
+      backOverlay: true,
+      clickToClose: true,
+      fontSize: '15px',
+      closeButton: true,
+      useFontAwesome: true,
+    }
   );
 }
 
