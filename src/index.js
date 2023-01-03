@@ -1,12 +1,7 @@
 import Notiflix from 'notiflix';
 
 // import fetchQuery from './js/fetchQuery';
-import {
-  curentPage,
-  perPage,
-  // incrementPage,
-  fetchQuery,
-} from './js/fetchQuery';
+import { curentPage, perPage, fetchQuery, resetPage } from './js/fetchQuery';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
@@ -48,20 +43,19 @@ async function onInfinityScroll(entries, observer) {
 
 function onSearchForm(e) {
   e.preventDefault();
-  // curentPage = 1;
-  refs.gallery.innerHTML = '';
-  console.log('onSearchForm__curentPage', curentPage);
-  const searchQuery = e.target.elements.searchQuery.value;
 
-  // console.log(searchQuery);
-  // console.log(fetchQuery(searchQuery));
+  resetPage();
+
+  refs.gallery.innerHTML = '';
+
+  const searchQuery = e.target.elements.searchQuery.value;
 
   fetchQuery(searchQuery).then(rendersMarkup).catch(console.error());
 }
 
 function rendersMarkup(queryResult) {
-  console.log('queryResult.totalHits', queryResult.totalHits);
-  console.log('queryResult.hits.length', queryResult.hits);
+  // console.log('queryResult.totalHits', queryResult.totalHits);
+  // console.log('queryResult.hits.length', queryResult.hits);
   console.log('queryResult', queryResult);
 
   let totalPagesCount = Math.ceil(queryResult.totalHits / perPage);

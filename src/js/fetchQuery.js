@@ -38,8 +38,12 @@ export async function fetchQuery(searchQuery) {
   }
 }
 
-export function incrementPage() {
+function incrementPage() {
   curentPage += 1;
+}
+
+export function resetPage() {
+  curentPage = 1;
 }
 
 export {};
