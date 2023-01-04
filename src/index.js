@@ -33,6 +33,7 @@ async function onInfinityScroll(entries, observer) {
       fetchQuery(lastSearchQuery).then(rendersMarkup).catch(console.error());
     }
   });
+  lightbox.refresh();
 }
 
 function onSearchForm(e) {
