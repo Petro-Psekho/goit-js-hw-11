@@ -51,18 +51,18 @@ body {
 }
 
 .gallery {
-  width: 1000px;
   position: relative;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  margin: 50px 0;
+  columns: 4 300px;
+  // column-gap: 50px;
+
+  margin: 50px 40px;
 }
 
 .photo-card {
   position: relative;
   cursor: pointer;
   height: 270px;
+  break-inside: avoid-column;
 
   &__face {
     width: 300px;
@@ -77,6 +77,9 @@ body {
     justify-content: center;
     align-items: center;
     border-radius: 4px;
+
+    margin-left: auto;
+    margin-right: auto;
 
     overflow: hidden;
     z-index: 1;
@@ -109,6 +112,9 @@ body {
   justify-content: center;
   align-items: flex-end;
   padding: 6px;
+
+  margin-left: auto;
+  margin-right: auto;
 
   height: 135px;
 
