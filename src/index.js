@@ -8,6 +8,7 @@ const refs = {
   inputField: document.querySelector('input[name=searchQuery]'),
   gallery: document.querySelector('.gallery'),
   guard: document.querySelector('.js-guard'),
+  toTopBtn: document.querySelector('.to-top'),
 };
 
 const lightbox = new SimpleLightbox('.gallery a', {
@@ -16,6 +17,8 @@ const lightbox = new SimpleLightbox('.gallery a', {
 });
 
 refs.searchForm.addEventListener('submit', onSearchForm);
+refs.toTopBtn.addEventListener('click', onTopScroll);
+window.addEventListener('scroll', onScrollToTopBtn);
 
 let options = {
   root: null,
@@ -49,17 +52,9 @@ function onSearchForm(e) {
 }
 
 function rendersMarkup(queryResult) {
-  // console.log('queryResult.totalHits', queryResult.totalHits);
-  // console.log('queryResult.hits.length', queryResult.hits);
-  console.log('queryResult', queryResult);
-
   const totalHits = queryResult.totalHits;
 
   let totalPagesCount = Math.ceil(queryResult.totalHits / perPage);
-  console.log('totalPagesCount', totalPagesCount);
-
-  console.log('perPage', perPage);
-  console.log('curentPage', curentPage);
 
   if (curentPage === 2 && queryResult.hits.length > 1) {
     numberOfImages(totalHits);
@@ -100,6 +95,22 @@ function rendersMarkup(queryResult) {
   lightbox.refresh();
 
   observer.observe(refs.guard);
+}
+
+function onScrollToTopBtn() {
+  const offsetTrigger = 1000;
+  const pageOffset = window.pageYOffset;
+
+  pageOffset > offsetTrigger
+    ? refs.toTopBtn.classList.remove('is-hidden')
+    : refs.toTopBtn.classList.add('is-hidden');
+}
+
+function onTopScroll() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
 }
 
 function wrongSearchQuery() {
@@ -148,8 +159,3 @@ function numberOfImages(totalHits) {
     useFontAwesome: false,
   });
 }
-
-// const lightbox = new SimpleLightbox('.gallery a', {
-//   captionsData: 'alt',
-//   captionDelay: 250,
-// });

@@ -2,6 +2,7 @@
 @import './search-form';
 
 body {
+  position: relative;
   margin: 0;
   padding: 0;
   min-height: 100vh;
@@ -163,4 +164,67 @@ body {
   font-size: 30px;
   // color: #575656;
   color: #eeeeee;
+}
+
+.is-hidden {
+  position: absolute;
+
+  margin: -1px;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+
+  border: 0;
+
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.to-top {
+  position: fixed;
+  bottom: 5%;
+  right: 5%;
+  z-index: 50;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 70px;
+  height: 70px;
+
+  font-size: 80px;
+
+  text-decoration: none;
+  color: #eeeeee79;
+  background-color: #fd71133a;
+  border-radius: 50%;
+  opacity: 0.5;
+  box-shadow: 2px 1px 3px 0px rgba(0, 0, 0, 0.3);
+
+  cursor: pointer;
+
+  animation: pulsate-bck 2.5s ease-in-out infinite both;
+
+  transition: all 250ms ease-in-out;
+
+  &:hover,
+  &:focus {
+    opacity: 1;
+    animation-play-state: paused;
+  }
+}
+
+@keyframes pulsate-bck {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
