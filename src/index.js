@@ -10,6 +10,11 @@ const refs = {
   guard: document.querySelector('.js-guard'),
 };
 
+const lightbox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+});
+
 refs.searchForm.addEventListener('submit', onSearchForm);
 
 let options = {
@@ -91,6 +96,8 @@ function rendersMarkup(queryResult) {
     .join('');
   refs.gallery.insertAdjacentHTML('beforeend', markup);
 
+  lightbox.refresh();
+
   observer.observe(refs.guard);
 }
 
@@ -141,7 +148,7 @@ function numberOfImages(totalHits) {
   });
 }
 
-const lightbox = new SimpleLightbox('.gallery a', {
-  captionsData: 'alt',
-  captionDelay: 250,
-});
+// const lightbox = new SimpleLightbox('.gallery a', {
+//   captionsData: 'alt',
+//   captionDelay: 250,
+// });
