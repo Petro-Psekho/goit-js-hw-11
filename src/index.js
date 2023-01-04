@@ -26,15 +26,6 @@ async function onInfinityScroll(entries, observer) {
   await entries.forEach(entry => {
     if (entry.isIntersecting) {
       fetchQuery(lastSearchQuery).then(rendersMarkup).catch(console.error());
-      // console.log('pageCount', pageCount, queryResult.totalHits);
-
-      // if (pageCount > queryResult.totalHits) {
-      //   console.log('pageCount', pageCount);
-      //   observer.disconnect();
-      // }
-
-      // console.log('внутри', curentPage, fetchQuery);
-      // incrementPage();
     }
   });
 }
@@ -57,13 +48,16 @@ function rendersMarkup(queryResult) {
   console.log('queryResult', queryResult);
 
   const totalHits = queryResult.totalHits;
-  numberOfImages(totalHits);
 
   let totalPagesCount = Math.ceil(queryResult.totalHits / perPage);
   console.log('totalPagesCount', totalPagesCount);
 
   console.log('perPage', perPage);
   console.log('curentPage', curentPage);
+
+  if (curentPage === 2 && queryResult.hits.length > 1) {
+    numberOfImages(totalHits);
+  }
 
   if (queryResult.hits.length === 0) {
     return wrongSearchQuery();
@@ -88,10 +82,10 @@ function rendersMarkup(queryResult) {
             <p class="info-item"><b class="material-symbols-outlined">mode_heat</b>${result.likes}</p>
             <p class="info-item"><b class="material-symbols-outlined">visibility</b>${result.views}</p>
             <p class="info-item"><b class="material-symbols-outlined">comment</b>${result.comments}</p>
-            <p class="info-item"><b class="material-symbols-outlined">downloading</b>${result.downloads}</p>            
+            <p class="info-item"><b class="material-symbols-outlined">downloading</b>${result.downloads}</p>
           </div>
-          
-        </div>      
+
+        </div>
         </div>`;
     })
     .join('');
