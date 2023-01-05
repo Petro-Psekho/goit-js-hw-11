@@ -112,6 +112,13 @@ body.hidden-scroll {
 .sl-wrapper.sl-dir-rtl .sl-navigation {
   direction: ltr;
 }
+
+.sl-image {
+  border-radius: 5px;
+  padding: 5px;
+  border: 1px solid #555;
+}
+
 .sl-wrapper .sl-image {
   position: fixed;
   -ms-touch-action: none;
@@ -150,16 +157,19 @@ body.hidden-scroll {
     border: 0 none;
   }
 }
+
 .sl-wrapper .sl-image .sl-caption {
   display: none;
-  padding: 10px;
-  color: #eeeeee;
-  background: rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  color: #ffffff;
+  // background: rgba(0, 0, 0, 0.8);
   font-size: 1rem;
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
+
+  text-shadow: 1 1 3px #000, 2 2 3px #000, 0 1 2px #000;
 }
 .sl-wrapper .sl-image .sl-caption.pos-top {
   bottom: auto;
