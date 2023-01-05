@@ -6,3 +6,4 @@ import './js/alertNotiflix';
 import './js/topButton';
 import './js/simpleLightbox';
 import './js/infinityScroll';
+import './js/smoothPageScrolling';

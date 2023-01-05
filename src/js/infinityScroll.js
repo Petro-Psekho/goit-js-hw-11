@@ -1,6 +1,6 @@
 import { refs } from './refs';
 import { rendersMarkup } from './rendersMarkup';
-import { curentPage, perPage, fetchQuery, resetPage } from './fetchQuery';
+import { fetchQuery } from './fetchQuery';
 import { lightbox } from './simpleLightbox';
 
 let options = {

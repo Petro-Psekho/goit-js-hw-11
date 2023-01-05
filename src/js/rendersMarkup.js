@@ -1,5 +1,5 @@
 import { refs } from './refs';
-import { curentPage, perPage, fetchQuery, resetPage } from './fetchQuery';
+import { curentPage, perPage } from './fetchQuery';
 import {
   wrongSearchQuery,
   endOfSearchResults,
@@ -7,6 +7,8 @@ import {
 } from './alertNotiflix';
 import { lightbox } from './simpleLightbox';
 import { observer } from './infinityScroll';
+
+import { smoothScroll } from './smoothPageScrolling';
 
 export function rendersMarkup(queryResult) {
   const totalHits = queryResult.totalHits;
@@ -48,6 +50,8 @@ export function rendersMarkup(queryResult) {
     })
     .join('');
   refs.gallery.insertAdjacentHTML('beforeend', markup);
+
+  smoothScroll();
 
   lightbox.refresh();
 

@@ -1,5 +1,5 @@
 import { refs } from './refs';
-import { curentPage, perPage, fetchQuery, resetPage } from './fetchQuery';
+import { fetchQuery, resetPage } from './fetchQuery';
 import { rendersMarkup } from './rendersMarkup';
 
 refs.searchForm.addEventListener('submit', onSearchForm);
