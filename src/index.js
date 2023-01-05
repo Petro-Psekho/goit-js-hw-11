@@ -1,25 +1,30 @@
-import Notiflix from 'notiflix';
+import { refs } from './js/refs';
 import { curentPage, perPage, fetchQuery, resetPage } from './js/fetchQuery';
-import SimpleLightbox from 'simplelightbox';
-// import 'simplelightbox/dist/simple-lightbox.min.css';
-// import '../src/sass/'
+import {
+  wrongSearchQuery,
+  endOfSearchResults,
+  numberOfImages,
+} from './js/alertNotiflix';
+import { onScrollToTopBtn, onTopScroll } from './js/topButton';
+import { lightbox } from './js/simpleLightbox';
 
-const refs = {
-  searchForm: document.querySelector('#search-form'),
-  inputField: document.querySelector('input[name=searchQuery]'),
-  gallery: document.querySelector('.gallery'),
-  guard: document.querySelector('.js-guard'),
-  toTopBtn: document.querySelector('.to-top'),
-};
+// const refs = {
+//   searchForm: document.querySelector('#search-form'),
+//   inputField: document.querySelector('input[name=searchQuery]'),
+//   gallery: document.querySelector('.gallery'),
+//   guard: document.querySelector('.js-guard'),
+//   toTopBtn: document.querySelector('.to-top'),
+// };
 
-const lightbox = new SimpleLightbox('.gallery a', {
-  captionsData: 'alt',
-  captionDelay: 250,
-});
+// const lightbox = new SimpleLightbox('.gallery a', {
+//   captionsData: 'alt',
+//   captionDelay: 250,
+// });
 
 refs.searchForm.addEventListener('submit', onSearchForm);
-refs.toTopBtn.addEventListener('click', onTopScroll);
-window.addEventListener('scroll', onScrollToTopBtn);
+
+// refs.toTopBtn.addEventListener('click', onTopScroll);
+// window.addEventListener('scroll', onScrollToTopBtn);
 
 let options = {
   root: null,
@@ -98,65 +103,65 @@ function rendersMarkup(queryResult) {
   observer.observe(refs.guard);
 }
 
-function onScrollToTopBtn() {
-  const offsetTrigger = 1000;
-  const pageOffset = window.pageYOffset;
+// function onScrollToTopBtn() {
+//   const offsetTrigger = 1000;
+//   const pageOffset = window.pageYOffset;
 
-  pageOffset > offsetTrigger
-    ? refs.toTopBtn.classList.remove('is-hidden')
-    : refs.toTopBtn.classList.add('is-hidden');
-}
+//   pageOffset > offsetTrigger
+//     ? refs.toTopBtn.classList.remove('is-hidden')
+//     : refs.toTopBtn.classList.add('is-hidden');
+// }
 
-function onTopScroll() {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth',
-  });
-}
+// function onTopScroll() {
+//   window.scrollTo({
+//     top: 0,
+//     behavior: 'smooth',
+//   });
+// }
 
-function wrongSearchQuery() {
-  Notiflix.Report.failure(
-    'Sorry',
-    'There are no images matching your search query',
-    'Please try again',
-    {
-      width: '500px',
-      svgSize: '80px',
-      titleFontSize: '20px',
-      messageFontSize: '21px',
-      buttonFontSize: '16px',
-    }
-  );
-  refs.inputField.value = '';
-  refs.gallery.innerHTML = '';
-}
+// function wrongSearchQuery() {
+//   Notiflix.Report.failure(
+//     'Sorry',
+//     'There are no images matching your search query',
+//     'Please try again',
+//     {
+//       width: '500px',
+//       svgSize: '80px',
+//       titleFontSize: '20px',
+//       messageFontSize: '21px',
+//       buttonFontSize: '16px',
+//     }
+//   );
+//   refs.inputField.value = '';
+//   refs.gallery.innerHTML = '';
+// }
 
-function endOfSearchResults() {
-  Notiflix.Notify.info(
-    "We're sorry, but you've reached the end of search results.",
-    {
-      width: '500px',
-      position: 'center-center',
-      timeout: 3000,
-      backOverlay: true,
-      clickToClose: true,
-      fontSize: '15px',
-      closeButton: true,
-      useFontAwesome: true,
-    }
-  );
-}
+// function endOfSearchResults() {
+//   Notiflix.Notify.info(
+//     "We're sorry, but you've reached the end of search results.",
+//     {
+//       width: '500px',
+//       position: 'center-center',
+//       timeout: 3000,
+//       backOverlay: true,
+//       clickToClose: true,
+//       fontSize: '15px',
+//       closeButton: true,
+//       useFontAwesome: true,
+//     }
+//   );
+// }
 
-function numberOfImages(totalHits) {
-  Notiflix.Notify.success(`Hooray! We found ${totalHits} images`, {
-    width: '800px',
+// function numberOfImages(totalHits) {
+//   Notiflix.Notify.success(`Hooray! We found ${totalHits} images`, {
+//     width: '800px',
 
-    position: 'center-bottom',
-    timeout: 2000,
-    backOverlay: false,
-    clickToClose: true,
-    fontSize: '15px',
-    closeButton: false,
-    useFontAwesome: false,
-  });
-}
+//     position: 'center-bottom',
+//     timeout: 2000,
+//     backOverlay: false,
+//     clickToClose: true,
+//     fontSize: '15px',
+//     closeButton: false,
+//     useFontAwesome: false,
+//   });
+// }
