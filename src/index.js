@@ -2,6 +2,7 @@ import Notiflix from 'notiflix';
 import { curentPage, perPage, fetchQuery, resetPage } from './js/fetchQuery';
 import SimpleLightbox from 'simplelightbox';
 // import 'simplelightbox/dist/simple-lightbox.min.css';
+// import '../src/sass/'
 
 const refs = {
   searchForm: document.querySelector('#search-form'),
