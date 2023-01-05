@@ -20,17 +20,6 @@ body {
   font-family: consolas;
 }
 
-.sl-overlay {
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  background: #cee408;
-  display: none;
-  z-index: 1035;
-}
-
 .search-form {
   margin-top: 50px;
 
@@ -142,7 +131,7 @@ body {
 
 .gallery .photo-card .photo-card__face.photo-card__face--dwn .info a:hover {
   background: #222831;
-  color: #fff;
+  color: #eeeeee;
 }
 
 .info {
