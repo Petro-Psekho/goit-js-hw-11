@@ -114,9 +114,12 @@ body.hidden-scroll {
 }
 
 .sl-image {
-  border-radius: 5px;
-  padding: 5px;
-  border: 1px solid #555;
+  border-radius: 4px;
+  padding: 3px;
+  padding-bottom: 10px;
+
+  border: 1px solid rgb(121, 121, 121);
+  box-shadow: 0 0 15px 0.4px rgb(22, 22, 22);
 }
 
 .sl-wrapper .sl-image {
@@ -128,6 +131,7 @@ body.hidden-scroll {
 .sl-wrapper .sl-image img {
   margin: 0;
   padding: 0;
+
   display: block;
   border: 0 none;
   width: 100%;
@@ -161,6 +165,7 @@ body.hidden-scroll {
 .sl-wrapper .sl-image .sl-caption {
   display: none;
   padding: 20px;
+
   color: #ffffff;
   // background: rgba(0, 0, 0, 0.8);
   font-size: 1rem;
