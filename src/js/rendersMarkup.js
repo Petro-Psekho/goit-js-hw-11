@@ -15,11 +15,15 @@ export function rendersMarkup(queryResult) {
 
   let totalPagesCount = Math.ceil(queryResult.totalHits / perPage);
 
-  if (curentPage === 2 && queryResult.hits.length > 1) {
+  if (
+    curentPage === 2 &&
+    queryResult.hits.length > 1 &&
+    refs.inputField.value !== ''
+  ) {
     numberOfImages(totalHits);
   }
 
-  if (queryResult.hits.length === 0) {
+  if (queryResult.hits.length === 0 || refs.inputField.value === '') {
     return wrongSearchQuery();
   }
 
